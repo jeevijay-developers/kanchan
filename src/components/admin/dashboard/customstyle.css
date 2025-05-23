@@ -1,0 +1,29 @@
+.dashboard {
+}
+
+@media screen and (min-width: 992px) {
+  .sidebar-wrapper {
+    width: 25%;
+  }
+  .dsb-items-wrapper {
+    width: 75%;
+  }
+  .dashboard-ul {
+    flex-direction: row;
+  }
+}
+@media screen and (max-width: 992px) {
+  .sidebar-wrapper {
+    width: 100%;
+    margin: auto;
+  }
+  .dashboard-ul {
+    width: 100%;
+    width: 575px;
+    flex-direction: column;
+  }
+  .dsb-items-wrapper {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
