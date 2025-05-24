@@ -9,8 +9,8 @@ const VideoGlider = () => {
   const [videos, setVideos] = useState([]);
   const [videoCount, setVideoCount] = useState(0);
   const [loading, setLoading] = useState<boolean>(false);
-
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const [currentlyPlaying, setCurrentlyPlaying] = useState<string | null>(null);
+  const videoRefs = useRef<{ [key: string]: HTMLVideoElement | null }>({});
 
   useEffect(() => {
     setLoading(true);
@@ -35,7 +35,7 @@ const VideoGlider = () => {
 
     const glide = new Glide(".glide", {
       type: "carousel",
-      perView: 2, // Adjust this value to change the number of videos displayed at once
+      perView: 2,
       focusAt: "center",
       breakpoints: {
         800: {
@@ -51,14 +51,27 @@ const VideoGlider = () => {
     return () => glide.destroy();
   }, [videos]);
 
-  const handleVideoTouch = (e: React.TouchEvent) => {
-    // Check if the event is a touch event
+  const handlePlay = (videoId: string) => {
+    // Pause the currently playing video if there is one
+    if (currentlyPlaying && currentlyPlaying !== videoId) {
+      const previousVideo = videoRefs.current[currentlyPlaying];
+      if (previousVideo) {
+        previousVideo.pause();
+      }
+    }
+    // Set the new currently playing video
+    setCurrentlyPlaying(videoId);
+  };
+
+  const handleVideoTouch = (e: React.TouchEvent, videoId: string) => {
     if (e.touches.length > 0) {
       const video = e.currentTarget as HTMLVideoElement;
       if (video.paused) {
+        handlePlay(videoId);
         video.play();
       } else {
         video.pause();
+        setCurrentlyPlaying(null);
       }
     }
   };
@@ -66,15 +79,15 @@ const VideoGlider = () => {
   if (loading) {
     return (
       <>
-        {" "}
-        <h2 className="text-center text-white m-4 ">Workshop Feedback</h2>{" "}
-        <DiscussSpinner />;
+        <h2 className="text-center text-white m-4">Workshop Feedback</h2>
+        <DiscussSpinner />
       </>
     );
   }
+
   return (
     <div className="my-5">
-      <h2 className="text-center text-white mb-4 ">Workshop Feedback</h2>
+      <h2 className="text-center text-white mb-4">Workshop Feedback</h2>
       <div className="glide">
         <div className="glide__track" data-glide-el="track">
           <ul className="glide__slides">
@@ -86,22 +99,17 @@ const VideoGlider = () => {
                     style={{ width: "500px", height: "auto" }}
                   >
                     <span style={{ color: "white" }}>{video.title}</span>
-                    {/* <MdDeleteOutline
-                      style={{
-                        color: "red",
-                        fontSize: "1.5rem",
-                        cursor: "pointer",
-                      }}
-                    /> */}
                   </div>
                   <video
-                    ref={videoRef}
+                    ref={(el: HTMLVideoElement | null) => {
+                      videoRefs.current[video._id] = el;
+                      return void 0; 
+                    }}
                     controls
-                    // autoPlay
-                    // muted
                     loop
                     style={{ width: "500px", height: "500px" }}
-                    onTouchStart={handleVideoTouch}
+                    onPlay={() => handlePlay(video._id)}
+                    onTouchStart={(e) => handleVideoTouch(e, video._id)}
                   >
                     <source src={video.url} />
                   </video>
@@ -133,10 +141,6 @@ const VideoGlider = () => {
             next
           </button>
         </div>
-      </div>
-      <div data-glide-el="controls">
-        <button data-glide-dir="<<">Start</button>
-        <button data-glide-dir=">>">End</button>
       </div>
     </div>
   );
