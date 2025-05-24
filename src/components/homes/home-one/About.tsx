@@ -100,16 +100,14 @@ const About = () => {
                             textAlign: "center",
                           }}
                         >
-                          Experience of
+                          Experience of training and mentoring <br /> students
+                          for academic & career growth
                         </p>
                         <p
                           style={{
                             textAlign: "left",
                           }}
-                        >
-                          training and mentoring <br /> students for academic{" "}
-                          <br /> & career growth
-                        </p>
+                        ></p>
                       </div>
                     </div>
                   </div>
