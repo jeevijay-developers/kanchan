@@ -95,62 +95,48 @@ const AboutTwo = () => {
           </div>
         </div>
       </div>
-      <div style={{}}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "row",
-            gap: "20px",
-            flexWrap: "wrap",
-            margin: "180px  10px 0px 10px",
-          }}
-        >
-          <div className="about-image" style={{ maxWidth: "40%" }}>
-            <Image
-              src={about_img3}
-              alt="about-img"
-              style={{ width: "60%", height: "auto" }}
-            />
+      <div className="container mt-5">
+        <div className="row align-items-center justify-content-center text-center text-md-start">
+          <div className="col-12 col-md-6 mb-4 mb-md-0 d-flex justify-content-center">
+            <div className="about-image" style={{ maxWidth: "80%" }}>
+              <Image
+                src={about_img3}
+                alt="about-img"
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  borderRadius: "12px",
+                }}
+              />
+            </div>
           </div>
-          <div style={{ maxWidth: "40%" }}>
-            <h2 style={{ margin: "30px 0px", textAlign: "center" }}>
-              Coaching & Programs
-            </h2>
-            <b
-              className="mt-4 mt-md-0 wow fadeInUp"
-              data-wow-delay=".5s"
-              style={{ margin: "0px 30px", display: "block" }}
-            >
-              Dr. Kanchan kabra offers customized coaching programs designed to
+          <div className="col-12 col-md-6">
+            <h2 className="mb-3">Coaching & Programs</h2>
+            <b className="d-block mb-3">
+              Dr. Kanchan Kabra offers customized coaching programs designed to
               help individuals achieve personal and professional growth. Her
               expertise includes:
             </b>
-            <ol
-              className=""
-              data-wow-delay=".7s"
-              style={{ alignSelf: "start", margin: "0px 15px" }}
-            >
+            <ol className="text-start ps-3">
               <li>
-                Mindset Mastery & Personal Development – Build confidence,
-                clarity, and resilience.
+                <strong>Mindset Mastery & Personal Development</strong> – Build
+                confidence, clarity, and resilience.
               </li>
               <li>
-                Success & Business Coaching – Learn strategies to excel in your
-                career or business.
+                <strong>Success & Business Coaching</strong> – Learn strategies
+                to excel in your career or business.
               </li>
               <li>
-                Emotional Intelligence & Stress Management – Master emotions for
-                a balanced life.s
+                <strong>Emotional Intelligence & Stress Management</strong> –
+                Master emotions for a balanced life.
               </li>
               <li>
-                Goal Setting & Productivity – Develop focus, discipline, and
-                high performance.
+                <strong>Goal Setting & Productivity</strong> – Develop focus,
+                discipline, and high performance.
               </li>
               <li>
-                Corporate Training & Team Building – Strengthen leadership and
-                teamwork.
+                <strong>Corporate Training & Team Building</strong> – Strengthen
+                leadership and teamwork.
               </li>
             </ol>
           </div>
