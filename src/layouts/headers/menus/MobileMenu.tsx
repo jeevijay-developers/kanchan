@@ -65,13 +65,22 @@ const MobileMenu = () => {
         }
       }
     } else {
-      toast.warn("Please Login First...");
+      if (para === "login") {
+        router.push("/login");
+      } else {
+        toast.warn("Please Login First...");
+      }
     }
   };
 
   return (
     <ul>
-      {menu_data.map((menu: any) => (
+      {menu_data.filter((menu:any) =>{
+        if(menu.title === 'Login' || menu.title === 'Logout'){
+          return false;
+        }
+        return true
+      }).map((menu: any) => (
         <li key={menu.id}>
           <Link
             href={menu.link}
