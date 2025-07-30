@@ -27,7 +27,7 @@ const menu_data: MenuItem[] = [
     id: 3,
     has_dropdown: false,
     title: "Courses",
-    link: "/service",
+    link: "https://courses.coachkanchankabra.com/s/store",
   },
 
   {
